@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		274A8CDE1BE7A1750075A9F0 /* universal ios */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 274A8CDF1BE7A1750075A9F0 /* Build configuration list for PBXAggregateTarget "universal ios" */;
+			buildPhases = (
+				274A8CE51BE7A1CB0075A9F0 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "universal ios";
+			productName = "universal ios";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2744B16A1A7A4637009E9E67 /* MCMXRecordResolverOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2744B1681A7A4637009E9E67 /* MCMXRecordResolverOperation.cpp */; };
 		2744B16B1A7A4637009E9E67 /* MCMXRecordResolverOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2744B1681A7A4637009E9E67 /* MCMXRecordResolverOperation.cpp */; };
@@ -17,6 +31,8 @@
 		27478E871A76475F004AE621 /* MCAccountValidator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27478E7F1A764698004AE621 /* MCAccountValidator.h */; };
 		27478E881A7647AC004AE621 /* MCOAccountValidator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27478E821A7646F8004AE621 /* MCOAccountValidator.h */; };
 		27478E891A7647AC004AE621 /* MCAccountValidator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27478E7F1A764698004AE621 /* MCAccountValidator.h */; };
+		274A8CE41BE7A1A90075A9F0 /* universal.sh in Resources */ = {isa = PBXBuildFile; fileRef = 274A8CE31BE7A1A90075A9F0 /* universal.sh */; };
+		274A8CEA1BE881570075A9F0 /* combine.sh in Resources */ = {isa = PBXBuildFile; fileRef = 274A8CE91BE881570075A9F0 /* combine.sh */; };
 		276A65D01A7B7E7D008722C2 /* MCMXRecordResolverOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2744B1691A7A4637009E9E67 /* MCMXRecordResolverOperation.h */; };
 		27780C2E19CF9CD100C77E44 /* MCOFramework.mm in Sources */ = {isa = PBXBuildFile; fileRef = C6BD28A9170BDB6B00A91AC1 /* MCOFramework.mm */; };
 		27780C3219CF9CD100C77E44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ED6D1917A1919500A4A14C /* Security.framework */; };
@@ -1462,6 +1478,8 @@
 		27478E7F1A764698004AE621 /* MCAccountValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAccountValidator.h; sourceTree = "<group>"; };
 		27478E821A7646F8004AE621 /* MCOAccountValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOAccountValidator.h; sourceTree = "<group>"; };
 		27478E831A7646F8004AE621 /* MCOAccountValidator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCOAccountValidator.mm; sourceTree = "<group>"; };
+		274A8CE31BE7A1A90075A9F0 /* universal.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = universal.sh; sourceTree = "<group>"; };
+		274A8CE91BE881570075A9F0 /* combine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = combine.sh; sourceTree = "<group>"; };
 		27780C3A19CF9CD100C77E44 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27780C3C19CF9D9800C77E44 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		27780D3419CFA19500C77E44 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/usr/lib/libstdc++.dylib"; sourceTree = DEVELOPER_DIR; };
@@ -2151,6 +2169,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274A8CE21BE7A1980075A9F0 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				274A8CE91BE881570075A9F0 /* combine.sh */,
+				274A8CE31BE7A1A90075A9F0 /* universal.sh */,
+			);
+			name = scripts;
+			sourceTree = "<group>";
+		};
 		8491899A18C93F6E002063A3 /* nntp */ = {
 			isa = PBXGroup;
 			children = (
@@ -2441,6 +2468,7 @@
 		C64EA52C169E772200778456 = {
 			isa = PBXGroup;
 			children = (
+				274A8CE21BE7A1980075A9F0 /* scripts */,
 				C6BD28A1170BD78E00A91AC1 /* mailcore-framework */,
 				C64EA545169E78B100778456 /* src */,
 				C64EA7A916A00AF400778456 /* tests */,
@@ -3264,6 +3292,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = MailCore;
 				TargetAttributes = {
+					274A8CDE1BE7A1750075A9F0 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					C600B6131A242C3F000728F1 = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -3292,6 +3323,7 @@
 				27780C2A19CF9CD100C77E44 /* mailcore ios */,
 				C6B5AE0119F630B3001352A6 /* unittest */,
 				C600B6131A242C3F000728F1 /* unittestcpp */,
+				274A8CDE1BE7A1750075A9F0 /* universal ios */,
 			);
 		};
 /* End PBXProject section */
@@ -3309,6 +3341,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274A8CEA1BE881570075A9F0 /* combine.sh in Resources */,
+				274A8CE41BE7A1A90075A9F0 /* universal.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3346,6 +3380,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		274A8CE51BE7A1CB0075A9F0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./universal.sh;
+		};
 		27780C2F19CF9CD100C77E44 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3974,6 +4021,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		274A8CE01BE7A1750075A9F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		274A8CE11BE7A1750075A9F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		27780C3819CF9CD100C77E44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3985,6 +4048,8 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "framework-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = (
 					"-lctemplate-ios",
 					"-letpan-ios",
@@ -3994,7 +4059,6 @@
 					"-ltidy",
 					"-lz",
 					"-ObjC",
-					"-lresolv",
 				);
 				PRODUCT_NAME = MailCore;
 				SDKROOT = iphoneos;
@@ -4013,6 +4077,8 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "framework-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = (
 					"-lctemplate-ios",
 					"-letpan-ios",
@@ -4022,7 +4088,6 @@
 					"-ltidy",
 					"-lz",
 					"-ObjC",
-					"-lresolv",
 				);
 				PRODUCT_NAME = MailCore;
 				SDKROOT = iphoneos;
@@ -4149,6 +4214,7 @@
 				"HEADER_SEARCH_PATHS[sdk=macosx*]" = "$(OSX_HEADERS_SEARCH_PATHS)";
 				IOS_HEADERS_SEARCH_PATHS = "\"$(SRCROOT)/../src/core/basetypes/icu-ucsdet/include\" \"$(SRCROOT)/../Externals/libetpan-ios/include\" \"$(SRCROOT)/../Externals/ctemplate-ios/include\" \"$(SRCROOT)/../Externals/tidy-html5-ios/include/tidy\" /usr/include/libxml2";
 				IOS_LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../Externals/libetpan-ios/lib\" \"$(SRCROOT)/../Externals/ctemplate-ios/lib\" \"$(SRCROOT)/../Externals/libsasl-ios/lib\" \"$(SRCROOT)/../Externals/tidy-html5-ios/lib\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Externals/libetpan/lib\"",
 					"\"$(SRCROOT)/../Externals/icu4c/lib\"",
@@ -4194,6 +4260,7 @@
 				"HEADER_SEARCH_PATHS[sdk=macosx*]" = "$(OSX_HEADERS_SEARCH_PATHS)";
 				IOS_HEADERS_SEARCH_PATHS = "\"$(SRCROOT)/../src/core/basetypes/icu-ucsdet/include\" \"$(SRCROOT)/../Externals/libetpan-ios/include\" \"$(SRCROOT)/../Externals/ctemplate-ios/include\" \"$(SRCROOT)/../Externals/tidy-html5-ios/include/tidy\" /usr/include/libxml2";
 				IOS_LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../Externals/libetpan-ios/lib\" \"$(SRCROOT)/../Externals/ctemplate-ios/lib\" \"$(SRCROOT)/../Externals/libsasl-ios/lib\" \"$(SRCROOT)/../Externals/tidy-html5-ios/lib\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Externals/libetpan/lib\"",
 					"\"$(SRCROOT)/../Externals/icu4c/lib\"",
@@ -4378,8 +4445,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = lib;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "MailCore-ios";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4391,8 +4460,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = lib;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "MailCore-ios";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -4460,6 +4531,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		274A8CDF1BE7A1750075A9F0 /* Build configuration list for PBXAggregateTarget "universal ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				274A8CE01BE7A1750075A9F0 /* Debug */,
+				274A8CE11BE7A1750075A9F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		27780C3719CF9CD100C77E44 /* Build configuration list for PBXNativeTarget "mailcore ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
