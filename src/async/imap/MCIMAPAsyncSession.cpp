@@ -68,6 +68,10 @@ IMAPAsyncSession::IMAPAsyncSession()
     mAutomaticConfigurationDone = false;
     mServerIdentity = new IMAPIdentity();
     mClientIdentity = new IMAPIdentity();
+    mSOCKSProxyEnabled = false;
+    mSOCKSProxyHost = NULL;
+    mSOCKSProxyPort = 0;
+    
     mOperationQueueCallback = NULL;
 #if __APPLE__
     mDispatchQueue = dispatch_get_main_queue();
@@ -91,6 +95,7 @@ IMAPAsyncSession::~IMAPAsyncSession()
     MC_SAFE_RELEASE(mPassword);
     MC_SAFE_RELEASE(mOAuth2Token);
     MC_SAFE_RELEASE(mDefaultNamespace);
+    MC_SAFE_RELEASE(mSOCKSProxyHost);
 }
 
 void IMAPAsyncSession::setHostname(String * hostname)
@@ -193,6 +198,36 @@ bool IMAPAsyncSession::isVoIPEnabled()
     return mVoIPEnabled;
 }
 
+void IMAPAsyncSession::setSOCKSProxyEnabled(bool enabled)
+{
+    mSOCKSProxyEnabled = enabled;
+}
+
+bool IMAPAsyncSession::isSOCKSProxyEnabled()
+{
+    return mSOCKSProxyEnabled;
+}
+
+void IMAPAsyncSession::setSOCKSProxyHost(String * host)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyHost, host);
+}
+
+String * IMAPAsyncSession::SOCKSProxyHost()
+{
+    return mSOCKSProxyHost;
+}
+
+void IMAPAsyncSession::setSOCKSProxyPort(unsigned int port)
+{
+    mSOCKSProxyPort = port;
+}
+
+unsigned int IMAPAsyncSession::SOCKSProxyPort()
+{
+    return mSOCKSProxyPort;
+}
+
 IMAPNamespace * IMAPAsyncSession::defaultNamespace()
 {
     return mDefaultNamespace;
@@ -255,6 +290,9 @@ IMAPAsyncConnection * IMAPAsyncSession::session()
     session->setTimeout(mTimeout);
     session->setCheckCertificateEnabled(mCheckCertificateEnabled);
     session->setVoIPEnabled(mVoIPEnabled);
+    session->setSOCKSProxyEnabled(mSOCKSProxyEnabled);
+    session->setSOCKSProxyHost(mSOCKSProxyHost);
+    session->setSOCKSProxyPort(mSOCKSProxyPort);
     session->setDefaultNamespace(mDefaultNamespace);
     session->setClientIdentity(mClientIdentity);
 #if __APPLE__

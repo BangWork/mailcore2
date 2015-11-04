@@ -225,6 +225,36 @@ bool IMAPAsyncConnection::isVoIPEnabled()
     return mSession->isVoIPEnabled();
 }
 
+void IMAPAsyncConnection::setSOCKSProxyEnabled(bool enabled)
+{
+    mSession->setSOCKSProxyEnabled(enabled);
+}
+
+bool IMAPAsyncConnection::isSOCKSProxyEnabled()
+{
+    return mSession->isSOCKSProxyEnabled();
+}
+
+void IMAPAsyncConnection::setSOCKSProxyHost(String * host)
+{
+    mSession->setSOCKSProxyHost(host);
+}
+
+String* IMAPAsyncConnection::SOCKSProxyHost()
+{
+    return mSession->SOCKSProxyHost();
+}
+
+void IMAPAsyncConnection::setSOCKSProxyPort(unsigned int port)
+{
+    mSession->setSOCKSProxyPort(port);
+}
+
+unsigned int IMAPAsyncConnection::SOCKSProxyPort()
+{
+    return mSession->SOCKSProxyPort();
+}
+
 void IMAPAsyncConnection::setDefaultNamespace(IMAPNamespace * ns)
 {
     mSession->setDefaultNamespace(ns);

@@ -81,6 +81,12 @@
 /** When set to YES, VoIP capability will be enabled on the IMAP connection on iOS */
 @property (nonatomic, assign, getter=isVoIPEnabled) BOOL voIPEnabled;
 
+@property (nonatomic, assign, getter=isSOCKSProxyEnabled) BOOL SOCKSProxyEnabled;
+
+@property (nonatomic, copy) NSString *SOCKSProxyHost;
+
+@property (nonatomic, assign) unsigned int SOCKSProxyPort;
+
 /** The default namespace. */
 @property (nonatomic, strong) MCOIMAPNamespace * defaultNamespace;
 

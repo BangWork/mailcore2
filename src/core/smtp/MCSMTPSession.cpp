@@ -34,6 +34,9 @@ void SMTPSession::init()
     mCheckCertificateEnabled = true;
     mUseHeloIPEnabled = false;
     mShouldDisconnect = false;
+    mSOCKSProxyEnabled = false;
+    mSOCKSProxyHost = NULL;
+    mSOCKSProxyPort = 0;
     
     mSmtp = NULL;
     mProgressCallback = NULL;
@@ -56,6 +59,7 @@ SMTPSession::~SMTPSession()
     MC_SAFE_RELEASE(mUsername);
     MC_SAFE_RELEASE(mPassword);
     MC_SAFE_RELEASE(mOAuth2Token);
+    MC_SAFE_RELEASE(mSOCKSProxyHost);
 }
 
 void SMTPSession::setHostname(String * hostname)
@@ -165,6 +169,36 @@ bool SMTPSession::useHeloIPEnabled()
     return mUseHeloIPEnabled;
 }
 
+void SMTPSession::setSOCKSProxyEnabled(bool enabled)
+{
+    mSOCKSProxyEnabled = enabled;
+}
+
+bool SMTPSession::isSOCKSProxyEnabled()
+{
+    return mSOCKSProxyEnabled;
+}
+
+void SMTPSession::setSOCKSProxyHost(String * host)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyHost, host);
+}
+
+String * SMTPSession::SOCKSProxyHost()
+{
+    return mSOCKSProxyHost;
+}
+
+void SMTPSession::setSOCKSProxyPort(unsigned int port)
+{
+    mSOCKSProxyPort = port;
+}
+
+unsigned int SMTPSession::SOCKSProxyPort()
+{
+    return mSOCKSProxyPort;
+}
+
 void SMTPSession::body_progress(size_t current, size_t maximum, void * context)
 {
     SMTPSession * session;
@@ -242,10 +276,20 @@ void SMTPSession::connect(ErrorCode * pError)
     
     setup();
     
+    mailstream_config * pConfig = NULL;
+    if (isSOCKSProxyEnabled()) {
+        mailstream_config config = {
+            .socks_proxy_enabled = isSOCKSProxyEnabled(),
+            .socks_proxy_host = strdup(MCUTF8(mSOCKSProxyHost)),
+            .socks_proxy_port = static_cast<short>(mSOCKSProxyPort)
+        };
+        pConfig = &config;
+    }
+    
     switch (mConnectionType) {
         case ConnectionTypeStartTLS:
             MCLog("connect %s %u", MCUTF8(hostname()), (unsigned int) port());
-            r = mailsmtp_socket_connect(mSmtp, MCUTF8(hostname()), port());
+            r = mailsmtp_socket_connect(mSmtp, MCUTF8(hostname()), port(), pConfig);
             if (r != MAILSMTP_NO_ERROR) {
                 * pError = ErrorConnection;
                 goto close;
@@ -267,7 +311,7 @@ void SMTPSession::connect(ErrorCode * pError)
             }
             
             MCLog("start TLS");
-            r = mailsmtp_socket_starttls(mSmtp);
+            r = mailsmtp_socket_starttls(mSmtp, pConfig);
             if (r != MAILSMTP_NO_ERROR) {
                 * pError = ErrorStartTLSNotAvailable;
                 goto close;
@@ -296,7 +340,7 @@ void SMTPSession::connect(ErrorCode * pError)
             break;
             
         case ConnectionTypeTLS:
-            r = mailsmtp_ssl_connect(mSmtp, MCUTF8(mHostname), port());
+            r = mailsmtp_ssl_connect(mSmtp, MCUTF8(mHostname), port(), pConfig);
             if (r != MAILSMTP_NO_ERROR) {
                 * pError = ErrorConnection;
                 goto close;
@@ -324,7 +368,7 @@ void SMTPSession::connect(ErrorCode * pError)
             break;
             
         default:
-            r = mailsmtp_socket_connect(mSmtp, MCUTF8(hostname()), port());
+            r = mailsmtp_socket_connect(mSmtp, MCUTF8(hostname()), port(), pConfig);
             if (r != MAILSMTP_NO_ERROR) {
                 * pError = ErrorConnection;
                 goto close;

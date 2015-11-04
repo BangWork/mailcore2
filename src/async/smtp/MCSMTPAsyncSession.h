@@ -51,6 +51,15 @@ namespace mailcore {
         virtual void setUseHeloIPEnabled(bool enabled);
         virtual bool useHeloIPEnabled();
         
+        virtual void setSOCKSProxyEnabled(bool enabled);
+        virtual bool isSOCKSProxyEnabled();
+        
+        virtual void setSOCKSProxyHost(String * host);
+        virtual String * SOCKSProxyHost();
+        
+        virtual void setSOCKSProxyPort(unsigned int port);
+        virtual unsigned int SOCKSProxyPort();
+        
         virtual void setConnectionLogger(ConnectionLogger * logger);
         virtual ConnectionLogger * connectionLogger();
         

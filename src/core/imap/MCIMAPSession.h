@@ -66,6 +66,15 @@ namespace mailcore {
         virtual IMAPIdentity * serverIdentity();
         virtual IMAPIdentity * clientIdentity();
         
+        virtual void setSOCKSProxyEnabled(bool enabled);
+        virtual bool isSOCKSProxyEnabled();
+        
+        virtual void setSOCKSProxyHost(String * host);
+        virtual String * SOCKSProxyHost();
+        
+        virtual void setSOCKSProxyPort(unsigned int port);
+        virtual unsigned int SOCKSProxyPort();
+        
         virtual void select(String * folder, ErrorCode * pError);
         virtual IMAPFolderStatus * folderStatus(String * folder, ErrorCode * pError);
         
@@ -225,6 +234,10 @@ namespace mailcore {
         IMAPIdentity * mServerIdentity;
         IMAPIdentity * mClientIdentity;
         time_t mTimeout;
+        // Proxy settings
+        bool mSOCKSProxyEnabled;
+        String * mSOCKSProxyHost;
+        unsigned int mSOCKSProxyPort;
         
         bool mBodyProgressEnabled;
         bool mIdleEnabled;

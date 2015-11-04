@@ -96,6 +96,9 @@ MCO_OBJC_SYNTHESIZE_SCALAR(MCOConnectionType, mailcore::ConnectionType, setConne
 MCO_OBJC_SYNTHESIZE_SCALAR(NSTimeInterval, time_t, setTimeout, timeout)
 MCO_OBJC_SYNTHESIZE_BOOL(setCheckCertificateEnabled, isCheckCertificateEnabled)
 MCO_OBJC_SYNTHESIZE_BOOL(setUseHeloIPEnabled, useHeloIPEnabled)
+MCO_OBJC_SYNTHESIZE_BOOL(setSOCKSProxyEnabled, isSOCKSProxyEnabled)
+MCO_OBJC_SYNTHESIZE_STRING(setSOCKSProxyHost, SOCKSProxyHost)
+MCO_OBJC_SYNTHESIZE_SCALAR(unsigned int, unsigned int, setSOCKSProxyPort, SOCKSProxyPort)
 MCO_OBJC_SYNTHESIZE_SCALAR(dispatch_queue_t, dispatch_queue_t, setDispatchQueue, dispatchQueue);
 
 - (void) setConnectionLogger:(MCOConnectionLogger)connectionLogger

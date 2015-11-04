@@ -184,6 +184,36 @@ bool SMTPAsyncSession::useHeloIPEnabled()
     return mSession->useHeloIPEnabled();
 }
 
+void SMTPAsyncSession::setSOCKSProxyEnabled(bool enabled)
+{
+    mSession->setSOCKSProxyEnabled(enabled);
+}
+
+bool SMTPAsyncSession::isSOCKSProxyEnabled()
+{
+    return mSession->isSOCKSProxyEnabled();
+}
+
+void SMTPAsyncSession::setSOCKSProxyHost(String * host)
+{
+    mSession->setSOCKSProxyHost(host);
+}
+
+String* SMTPAsyncSession::SOCKSProxyHost()
+{
+    return mSession->SOCKSProxyHost();
+}
+
+void SMTPAsyncSession::setSOCKSProxyPort(unsigned int port)
+{
+    mSession->setSOCKSProxyPort(port);
+}
+
+unsigned int SMTPAsyncSession::SOCKSProxyPort()
+{
+    return mSession->SOCKSProxyPort();
+}
+
 void SMTPAsyncSession::runOperation(SMTPOperation * operation)
 {
     cancelDelayedPerformMethod((Object::Method) &SMTPAsyncSession::tryAutomaticDisconnectAfterDelay, NULL);

@@ -78,6 +78,15 @@ namespace mailcore {
         virtual void setVoIPEnabled(bool enabled);
         virtual bool isVoIPEnabled();
         
+        virtual void setSOCKSProxyEnabled(bool enabled);
+        virtual bool isSOCKSProxyEnabled();
+        
+        virtual void setSOCKSProxyHost(String * host);
+        virtual String * SOCKSProxyHost();
+        
+        virtual void setSOCKSProxyPort(unsigned int port);
+        virtual unsigned int SOCKSProxyPort();
+        
         virtual void setDefaultNamespace(IMAPNamespace * ns);
         virtual IMAPNamespace * defaultNamespace();
         
@@ -194,6 +203,9 @@ namespace mailcore {
         bool mAutomaticConfigurationDone;
         IMAPIdentity * mServerIdentity;
         IMAPIdentity * mClientIdentity;
+        bool mSOCKSProxyEnabled;
+        String * mSOCKSProxyHost;
+        unsigned int mSOCKSProxyPort;
         bool mQueueRunning;
         OperationQueueCallback * mOperationQueueCallback;
 #if __APPLE__

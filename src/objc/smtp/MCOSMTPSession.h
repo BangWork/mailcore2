@@ -67,6 +67,12 @@
 */
 @property (nonatomic, assign, getter=isUseHeloIPEnabled) BOOL useHeloIPEnabled;
 
+@property (nonatomic, assign, getter=isSOCKSProxyEnabled) BOOL SOCKSProxyEnabled;
+
+@property (nonatomic, copy) NSString *SOCKSProxyHost;
+
+@property (nonatomic, assign) unsigned int SOCKSProxyPort;
+
 /**
  Sets logger callback. The network traffic will be sent to this block.
  
