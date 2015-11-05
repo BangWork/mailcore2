@@ -10,7 +10,7 @@
   },
   "authors": "MailCore Authors",
   "source": {
-    "http": "http://d.etpan.org/mailcore2-deps/mailcore2-ios/mailcore2-ios-7.zip",
+    "http": "https://github.com/hexy-io/mailcore2/raw/f4b6bd7ee49d6fc51e9c792854b68a33fddcd99f/build-mac/build/mailcore2-bang.zip",
     "flatten": true
   },
   "platforms": {
