@@ -71,6 +71,8 @@ IMAPAsyncSession::IMAPAsyncSession()
     mSOCKSProxyEnabled = false;
     mSOCKSProxyHost = NULL;
     mSOCKSProxyPort = 0;
+    mSOCKSProxyUser = NULL;
+    mSOCKSProxyPassword = NULL;
     
     mOperationQueueCallback = NULL;
 #if __APPLE__
@@ -96,6 +98,8 @@ IMAPAsyncSession::~IMAPAsyncSession()
     MC_SAFE_RELEASE(mOAuth2Token);
     MC_SAFE_RELEASE(mDefaultNamespace);
     MC_SAFE_RELEASE(mSOCKSProxyHost);
+    MC_SAFE_RELEASE(mSOCKSProxyUser);
+    MC_SAFE_RELEASE(mSOCKSProxyPassword);
 }
 
 void IMAPAsyncSession::setHostname(String * hostname)
@@ -228,6 +232,26 @@ unsigned int IMAPAsyncSession::SOCKSProxyPort()
     return mSOCKSProxyPort;
 }
 
+void IMAPAsyncSession::setSOCKSProxyUser(String * user)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyUser, user);
+}
+
+String * IMAPAsyncSession::SOCKSProxyUser()
+{
+    return mSOCKSProxyUser;
+}
+
+void IMAPAsyncSession::setSOCKSProxyPassword(String * password)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyPassword, password);
+}
+
+String * IMAPAsyncSession::SOCKSProxyPassword()
+{
+    return mSOCKSProxyPassword;
+}
+
 IMAPNamespace * IMAPAsyncSession::defaultNamespace()
 {
     return mDefaultNamespace;
@@ -293,6 +317,8 @@ IMAPAsyncConnection * IMAPAsyncSession::session()
     session->setSOCKSProxyEnabled(mSOCKSProxyEnabled);
     session->setSOCKSProxyHost(mSOCKSProxyHost);
     session->setSOCKSProxyPort(mSOCKSProxyPort);
+    session->setSOCKSProxyUser(mSOCKSProxyUser);
+    session->setSOCKSProxyPassword(mSOCKSProxyPassword);
     session->setDefaultNamespace(mDefaultNamespace);
     session->setClientIdentity(mClientIdentity);
 #if __APPLE__

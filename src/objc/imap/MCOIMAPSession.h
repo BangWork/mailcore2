@@ -87,6 +87,10 @@
 
 @property (nonatomic, assign) unsigned int SOCKSProxyPort;
 
+@property (nonatomic, copy) NSString *SOCKSProxyUser;
+
+@property (nonatomic, copy) NSString *SOCKSProxyPassword;
+
 /** The default namespace. */
 @property (nonatomic, strong) MCOIMAPNamespace * defaultNamespace;
 

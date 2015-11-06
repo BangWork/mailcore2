@@ -75,6 +75,12 @@ namespace mailcore {
         virtual void setSOCKSProxyPort(unsigned int port);
         virtual unsigned int SOCKSProxyPort();
         
+        virtual void setSOCKSProxyUser(String * user);
+        virtual String * SOCKSProxyUser();
+        
+        virtual void setSOCKSProxyPassword(String * password);
+        virtual String * SOCKSProxyPassword();
+        
         virtual void select(String * folder, ErrorCode * pError);
         virtual IMAPFolderStatus * folderStatus(String * folder, ErrorCode * pError);
         
@@ -238,6 +244,8 @@ namespace mailcore {
         bool mSOCKSProxyEnabled;
         String * mSOCKSProxyHost;
         unsigned int mSOCKSProxyPort;
+        String * mSOCKSProxyUser;
+        String * mSOCKSProxyPassword;
         
         bool mBodyProgressEnabled;
         bool mIdleEnabled;

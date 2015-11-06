@@ -99,6 +99,8 @@ MCO_OBJC_SYNTHESIZE_BOOL(setUseHeloIPEnabled, useHeloIPEnabled)
 MCO_OBJC_SYNTHESIZE_BOOL(setSOCKSProxyEnabled, isSOCKSProxyEnabled)
 MCO_OBJC_SYNTHESIZE_STRING(setSOCKSProxyHost, SOCKSProxyHost)
 MCO_OBJC_SYNTHESIZE_SCALAR(unsigned int, unsigned int, setSOCKSProxyPort, SOCKSProxyPort)
+MCO_OBJC_SYNTHESIZE_STRING(setSOCKSProxyUser, SOCKSProxyUser)
+MCO_OBJC_SYNTHESIZE_STRING(setSOCKSProxyPassword, SOCKSProxyPassword)
 MCO_OBJC_SYNTHESIZE_SCALAR(dispatch_queue_t, dispatch_queue_t, setDispatchQueue, dispatchQueue);
 
 - (void) setConnectionLogger:(MCOConnectionLogger)connectionLogger

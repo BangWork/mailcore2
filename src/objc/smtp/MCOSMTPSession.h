@@ -73,6 +73,10 @@
 
 @property (nonatomic, assign) unsigned int SOCKSProxyPort;
 
+@property (nonatomic, copy) NSString *SOCKSProxyUser;
+
+@property (nonatomic, copy) NSString *SOCKSProxyPassword;
+
 /**
  Sets logger callback. The network traffic will be sent to this block.
  

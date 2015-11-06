@@ -319,6 +319,8 @@ void IMAPSession::init()
     mSOCKSProxyEnabled = false;
     mSOCKSProxyHost = NULL;
     mSOCKSProxyPort = 0;
+    mSOCKSProxyUser = NULL;
+    mSOCKSProxyPassword = NULL;
     mDelimiter = 0;
     
     mBodyProgressEnabled = true;
@@ -378,6 +380,8 @@ IMAPSession::~IMAPSession()
     MC_SAFE_RELEASE(mDefaultNamespace);
     MC_SAFE_RELEASE(mCurrentFolder);
     MC_SAFE_RELEASE(mSOCKSProxyHost);
+    MC_SAFE_RELEASE(mSOCKSProxyUser);
+    MC_SAFE_RELEASE(mSOCKSProxyPassword);
     pthread_mutex_destroy(&mIdleLock);
 }
 
@@ -511,6 +515,26 @@ unsigned int IMAPSession::SOCKSProxyPort()
     return mSOCKSProxyPort;
 }
 
+void IMAPSession::setSOCKSProxyUser(String * user)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyUser, user);
+}
+
+String * IMAPSession::SOCKSProxyUser()
+{
+    return mSOCKSProxyUser;
+}
+
+void IMAPSession::setSOCKSProxyPassword(String * password)
+{
+    MC_SAFE_REPLACE_COPY(String, mSOCKSProxyPassword, password);
+}
+
+String * IMAPSession::SOCKSProxyPassword()
+{
+    return mSOCKSProxyPassword;
+}
+
 static bool hasError(int errorCode)
 {
     return ((errorCode != MAILIMAP_NO_ERROR) && (errorCode != MAILIMAP_NO_ERROR_AUTHENTICATED) &&
@@ -604,20 +628,21 @@ void IMAPSession::connect(ErrorCode * pError)
     
     MCAssert(mState == STATE_DISCONNECTED);
     
-    mailstream_config * pConfig = NULL;
+    mailstream_config config = {};
     if (isSOCKSProxyEnabled()) {
-        mailstream_config config = {
-            .socks_proxy_enabled = isSOCKSProxyEnabled(),
-            .socks_proxy_host = strdup(MCUTF8(mSOCKSProxyHost)),
-            .socks_proxy_port = static_cast<short>(mSOCKSProxyPort)
-        };
-        pConfig = &config;
+        config.socks_proxy_enabled = isSOCKSProxyEnabled();
+        config.socks_proxy_host = strdup(MCUTF8(mSOCKSProxyHost));
+        config.socks_proxy_port = static_cast<uint16_t>(mSOCKSProxyPort);
+        if (mSOCKSProxyUser) {
+            config.socks_proxy_user = strdup(MCUTF8(mSOCKSProxyUser));
+            config.socks_proxy_password = strdup(MCUTF8(mSOCKSProxyPassword));
+        }
     }
     
     switch (mConnectionType) {
         case ConnectionTypeStartTLS:
         MCLog("STARTTLS connect");
-        r = mailimap_socket_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), pConfig);
+        r = mailimap_socket_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), &config);
         if (hasError(r)) {
             * pError = ErrorConnection;
             goto close;
@@ -632,7 +657,7 @@ void IMAPSession::connect(ErrorCode * pError)
         break;
 
         case ConnectionTypeTLS:
-        r = mailimap_ssl_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), pConfig);
+        r = mailimap_ssl_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), &config);
         MCLog("ssl connect %s %u %u", MCUTF8(mHostname), mPort, r);
         if (hasError(r)) {
             MCLog("connect error %i", r);
@@ -649,7 +674,7 @@ void IMAPSession::connect(ErrorCode * pError)
 
         default:
         MCLog("socket connect %s %u", MCUTF8(mHostname), mPort);
-        r = mailimap_socket_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), pConfig);
+        r = mailimap_socket_connect_voip(mImap, MCUTF8(mHostname), mPort, isVoIPEnabled(), &config);
         MCLog("socket connect %i", r);
         if (hasError(r)) {
             MCLog("connect error %i", r);

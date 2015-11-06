@@ -214,6 +214,26 @@ unsigned int SMTPAsyncSession::SOCKSProxyPort()
     return mSession->SOCKSProxyPort();
 }
 
+void SMTPAsyncSession::setSOCKSProxyUser(String * user)
+{
+    mSession->setSOCKSProxyUser(user);
+}
+
+String * SMTPAsyncSession::SOCKSProxyUser()
+{
+    return mSession->SOCKSProxyUser();
+}
+
+void SMTPAsyncSession::setSOCKSProxyPassword(String * password)
+{
+    mSession->setSOCKSProxyPassword(password);
+}
+
+String * SMTPAsyncSession::SOCKSProxyPassword()
+{
+    return mSession->SOCKSProxyPassword();
+}
+
 void SMTPAsyncSession::runOperation(SMTPOperation * operation)
 {
     cancelDelayedPerformMethod((Object::Method) &SMTPAsyncSession::tryAutomaticDisconnectAfterDelay, NULL);

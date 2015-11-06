@@ -78,6 +78,12 @@ namespace mailcore {
         virtual void setSOCKSProxyPort(unsigned int port);
         virtual unsigned int SOCKSProxyPort();
         
+        virtual void setSOCKSProxyUser(String * user);
+        virtual String * SOCKSProxyUser();
+        
+        virtual void setSOCKSProxyPassword(String * password);
+        virtual String * SOCKSProxyPassword();
+        
         virtual void setAutomaticConfigurationEnabled(bool enabled);
         virtual bool isAutomaticConfigurationEnabled();
         

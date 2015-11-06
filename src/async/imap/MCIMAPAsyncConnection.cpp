@@ -255,6 +255,26 @@ unsigned int IMAPAsyncConnection::SOCKSProxyPort()
     return mSession->SOCKSProxyPort();
 }
 
+void IMAPAsyncConnection::setSOCKSProxyUser(String * user)
+{
+    mSession->setSOCKSProxyUser(user);
+}
+
+String* IMAPAsyncConnection::SOCKSProxyUser()
+{
+    return mSession->SOCKSProxyUser();
+}
+
+void IMAPAsyncConnection::setSOCKSProxyPassword(String * password)
+{
+    mSession->setSOCKSProxyPassword(password);
+}
+
+String* IMAPAsyncConnection::SOCKSProxyPassword()
+{
+    return mSession->SOCKSProxyPassword();
+}
+
 void IMAPAsyncConnection::setDefaultNamespace(IMAPNamespace * ns)
 {
     mSession->setDefaultNamespace(ns);
