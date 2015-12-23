@@ -180,6 +180,7 @@ namespace mailcore {
         IMAPSearchKindContent,
         IMAPSearchKindBody,
         IMAPSearchKindUIDs,
+        IMAPSearchKindNumbers,
         IMAPSearchKindHeader,
         IMAPSearchKindRead,
         IMAPSearchKindUnread,
@@ -251,6 +252,7 @@ namespace mailcore {
         ErrorGmailApplicationSpecificPasswordRequired, // 40
         ErrorServerDate,
         ErrorNoValidServerFound,
+        ErrorCustomCommand,
     };
     
     enum PartType {

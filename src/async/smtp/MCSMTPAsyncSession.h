@@ -87,6 +87,8 @@ namespace mailcore {
         
         virtual SMTPOperation * noopOperation();
         
+        virtual SMTPOperation * disconnectOperation();
+
     public: // private
         virtual void runOperation(SMTPOperation * operation);
         virtual SMTPSession * session();
