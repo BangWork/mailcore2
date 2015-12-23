@@ -10,7 +10,7 @@
   },
   "authors": "MailCore Authors",
   "source": {
-    "http": "https://github.com/hexy-io/mailcore2/raw/f4b6bd7ee49d6fc51e9c792854b68a33fddcd99f/build-mac/build/mailcore2-bang.zip",
+    "http": "https://github.com/hexy-io/mailcore2/raw/19fdbe549ba453e511787e2ffa74373aa0344dc3/build-mac/build/mailcore2-bang.zip",
     "flatten": true
   },
   "platforms": {
